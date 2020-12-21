@@ -34,7 +34,7 @@ function Index(props) {
 
   const submitSearch = (e) => {
     e.preventDefault();
-    if(artists) {
+    if(term) {
       axios({
         method: 'POST',
         url: 'http://localhost:3002/search',
