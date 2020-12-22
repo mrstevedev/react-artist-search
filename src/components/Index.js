@@ -37,7 +37,7 @@ function Index(props) {
     if(term) {
       axios({
         method: 'POST',
-        url: 'http://localhost:3002/search',
+        url: '/search',
         data: {
           artists: artists,
           releases: releases
@@ -45,7 +45,13 @@ function Index(props) {
       }).then((res) => {
         if(artists) {
           let data = res.data;
-          props.history.push('/search', data)
+          // props.history.push({
+          //   pathname: '/search',
+          //   state: {
+          //     artists,
+          //     releases
+          //   }
+          // })
         }
       }).catch(err => err)
     }
@@ -67,7 +73,7 @@ function Index(props) {
                 type="text"
                 className="artist--search-txt-field"
                 autoFocus
-                placeholder="Search Mariah Carey Christmas songs...or maybe not"
+                placeholder="Search Mariah Carey Christmas songs..."
                 onChange={(e) => {
                   setfetchInProgress(true);
                   handleSearch(e)
@@ -101,10 +107,8 @@ function Index(props) {
                         to={{
                           pathname: `/artist/${artist.strArtist.toLowerCase()}`,
                           state: {
-                            data: {
-                              artist,
-                              releases
-                            }
+                            artist,
+                            releases
                           },
                         }}
                         style={{ textDecoration: "none", color: "#1d2861" }}
