@@ -1,12 +1,12 @@
 import './App.scss';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Index from './components/Index';
 import Search from './Search/Search';
 import Artist from './Artist/Artist';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/">
       <Switch>
         <Route exact path="/" component={Index} />
         <Route path="/artist/:name" component={Artist} />
