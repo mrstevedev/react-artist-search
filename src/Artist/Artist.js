@@ -1,12 +1,19 @@
 import React, { Fragment } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation} from 'react-router-dom';
 import AlbumItem from "../components/AlbumItem";
 
 function Artist(props) {
-    const artist = props.location.state.data;
-    const albums = props.location.state.data.releases.album;
-    const resultsCount = artist.releases.album.length;
-    console.log(artist);
+    const location = useLocation();
+    
+    const artist = location.state !== undefined ? location.state.artist : JSON.parse(localStorage.getItem('artist'));
+    localStorage.setItem('artist', JSON.stringify(artist));
+    console.log(artist.strArtist)
+
+    const albums = location.state !== undefined ? location.state.releases.album : JSON.parse(localStorage.getItem('releases'));
+    localStorage.setItem('releases', JSON.stringify(albums));
+
+    const resultsCount = albums.length;
+
 
     let albumsItem = albums.map((album, index) => {
         return <AlbumItem album={album} key={index} />
@@ -16,7 +23,7 @@ function Artist(props) {
       <div className="container">
         <div className="artist--search-results-container">
         <div className="artist--search-results bio fade-in" style={{ 
-            // background: `url(${artist.strArtistThumb}) no-repeat center center / cover`,
+            background: `url(${artist.strArtistThumb}) no-repeat center center / cover`,
             position: 'fixed'
          }}>
             <div className="artist--search-results-title">
@@ -49,7 +56,7 @@ function Artist(props) {
             Back To Search
           </Link>
        </div>
-        <h2>Artist Discography <span className="artist--search-results-term">{artist.artist.strArtist}</span></h2>
+        <h2>Artist Discography <span className="artist--search-results-term">{artist.strArtist}</span></h2>
         <h4>Showing <span className="artist--search-results-term">{resultsCount}</span> Results</h4>
         <div className="results-container">{albumsItem}</div>
         </div>
