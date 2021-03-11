@@ -30,6 +30,9 @@ function Index(props) {
 
   const handleSearch = debounce((e) => {
     setSearchTerm(e.target.value);    
+    if(e.target.value === "") {
+      setfetchInProgress(false);
+    }
   }, 900);
 
   const submitSearch = (e) => {
