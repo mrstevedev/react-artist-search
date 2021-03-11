@@ -1,11 +1,17 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Search(props) {
-    const artist = props.location.state.artists.artists.find(artist => artist);
-    const releases = props.location.state.releases;
-    const artistPhoto = props.location.state.artists.artists.map((photo) => photo.strArtistThumb);
-    const artistName = props.location.state.artists.artists.map((name) => name.strArtist);
+    const location = useLocation() 
+
+    const artist = location.state !== undefined ? location.state.artists.artists.find(artist => artist) : JSON.parse(localStorage.getItem('artist'));
+    localStorage.setItem('artist', JSON.stringify(artist));
+
+    const artistName = artist.strArtist;
+    const artistPhoto = artist.strArtistThumb;
+
+    const releases = location.state !== undefined ? location.state.releases : JSON.parse(localStorage.getItem('releases'));
+    localStorage.setItem('releases', JSON.stringify(releases));
 
   return (
     <Fragment>
@@ -47,14 +53,12 @@ function Search(props) {
            <Link className="artist--search-results-link" to={{
               pathname: `/artist/${artist.strArtist.toLowerCase()}`,
                state: {
-                data: {
-                  artist,
-                  releases
-                }
+                artist,
+                releases
             } 
            }}>
             <div className="artist--search-results-row">
-                <img src={artistPhoto} height="50" width="50" />
+                <img src={artistPhoto} height="50" width="50" alt="resultsimg" />
                 <p>{artistName}</p>
             </div>
            </Link>
