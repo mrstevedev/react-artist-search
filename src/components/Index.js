@@ -44,14 +44,14 @@ function Index(props) {
         }
       }).then((res) => {
         if(artists) {
-          let data = res.data;
-          // props.history.push({
-          //   pathname: '/search',
-          //   state: {
-          //     artists,
-          //     releases
-          //   }
-          // })
+          let releases = res.data.releases;
+          props.history.push({
+            pathname: '/search',
+            state: {
+              artists,
+              releases
+            }
+          })
         }
       }).catch(err => err)
     }
@@ -73,7 +73,7 @@ function Index(props) {
                 type="text"
                 className="artist--search-txt-field"
                 autoFocus
-                placeholder="Search Mariah Carey Christmas songs..."
+                placeholder="Search Mariah Carey Christmas songs...`"
                 onChange={(e) => {
                   setfetchInProgress(true);
                   handleSearch(e)
