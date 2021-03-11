@@ -18,7 +18,7 @@ function Index(props) {
           setArtists(res.data);
           if(res.data.artists !==null) {
             res.data.artists.map(artist => {
-              return axios.get(`https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?s=${ artist.strArtist }`)
+              return axios.get(`https://www.theaudiodb.com/api/v1/json/523532/searchalbum.php?s=${ artist.strArtist }`)
                 .then(res => setReleases(res.data))
                 .catch(err => err)})
           }
