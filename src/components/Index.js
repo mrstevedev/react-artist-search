@@ -73,7 +73,7 @@ function Index(props) {
                 type="text"
                 className="artist--search-txt-field"
                 autoFocus
-                placeholder="Search Mariah Carey Christmas songs...`"
+                placeholder="Search Mariah Carey Christmas songs..."
                 onChange={(e) => {
                   setfetchInProgress(true);
                   handleSearch(e)
