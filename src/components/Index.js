@@ -86,7 +86,7 @@ function Index(props) {
               )}
               <div
                 className={`artist--search-dropdown ${
-                  artists.artists === undefined || artists.artists === null && term === ""
+                  artists.artists === undefined || artists.artists === null || term === ""
                     ? "hide"
                     : "show"
                 }`}
