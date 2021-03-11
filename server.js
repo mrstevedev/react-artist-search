@@ -14,7 +14,7 @@ app.use(cors({
     credentials: true
 }));
 
-app.post('/search', (req, res) => {
+app.get('/search', (req, res) => {
     const { artists, releases } = req.body;
     return res.status(200).json({ artists: artists, releases: releases })
 });

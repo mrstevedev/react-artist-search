@@ -47,7 +47,6 @@ function Index(props) {
         }
       }).then((res) => {
         if(artists) {
-          let releases = res.data.releases;
           props.history.push({
             pathname: '/search',
             state: {
