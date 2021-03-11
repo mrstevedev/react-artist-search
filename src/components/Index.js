@@ -39,7 +39,7 @@ function Index(props) {
     e.preventDefault();
     if(term) {
       axios({
-        method: 'POST',
+        method: 'GET',
         url: '/search',
         data: {
           artists: artists,
