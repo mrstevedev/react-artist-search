@@ -16,7 +16,6 @@ app.use(cors({
 
 app.post('/search', (req, res) => {
     const { artists, releases } = req.body;
-    console.log(artists);
     return res.status(200).json({ artists: artists, releases: releases })
 });
 
